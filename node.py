@@ -11,7 +11,7 @@ BLANK = (255, 255, 255)
 
 
 class Node():
-    def __init__(self, row, col, width, total_row):
+    def __init__(self, row, col, width, total_rows):
         self.row = row
         self.col = col
         self.x = row * width
@@ -19,7 +19,7 @@ class Node():
         self.neighbors = []
         self.color = BLANK
         self.width = width
-        self.total_row = total_row
+        self.total_rows = total_rows
 
     def get_position(self):
         return self.x, self.y
@@ -66,8 +66,19 @@ class Node():
     def draw(self, window):
         pygame.draw.rect(window, self.color, (self.x, self.y, self.width, self.width))
 
-    def update_neighbors(self):
-        pass
+    def update_neighbors(self, grid):
+        self.neighbors = []
+        if self.row < self.total_rows - 1 and not grid[self.row + 1][self.col].is_obstacle():  # DOWN
+            self.neighbors.append(grid[self.row + 1][self.col])
+
+        if self.row > 0 and not grid[self.row - 1][self.col].is_obstacle():  # UP
+            self.neighbors.append(grid[self.row - 1][self.col])
+
+        if self.col < self.total_rows - 1 and not grid[self.row][self.col + 1].is_obstacle():  # RIGHT
+            self.neighbors.append(grid[self.row][self.col + 1])
+
+        if self.col > 0 and not grid[self.row][self.col - 1].is_obstacle():  # LEFT
+            self.neighbors.append(grid[self.row][self.col - 1])
 
     def __lt__(self):
         return False
