@@ -63,3 +63,12 @@ class Node():
     def set_path(self):
         self.color = PATH
 
+    def draw(self, window):
+        pygame.draw.rect(window, self.color, (self.x, self.y, self.width, self.width))
+
+    def update_neighbors(self):
+        pass
+
+    def __lt__(self):
+        return False
+

@@ -1,4 +1,12 @@
 import pygame, pygame_gui
+
+HEIGHT = 800
+WIDTH = 800
+
+
+window = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("Pathfinder")
+
 manager = pygame_gui.UIManager((800, 600))
 slider = pygame_gui.elements.UIHorizontalSlider(relative_rect=pygame.Rect((50, 50), (200, 50)),
                                                 start_value=0,
