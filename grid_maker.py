@@ -2,7 +2,7 @@ import pygame.draw
 import node
 from node import BLANK
 
-GRID_LINE = (96, 96, 96)
+GRID_LINE = (0, 0, 0)
 
 
 def make_grid(rows, width):
@@ -20,9 +20,9 @@ def make_grid(rows, width):
 def draw_grid(window, rows, width):
     gap = width // rows
     for i in range(rows):
-        pygame.draw.line(window, GRID_LINE, (0, i * gap), (width, i * gap))
-        for j in range(rows):
-            pygame.draw.line(window, GRID_LINE, (j * gap, 0), (j * gap, width))
+        pygame.draw.line(window, GRID_LINE, (0, i*gap), (width, i))
+    for j in range(rows):
+        pygame.draw.line(window, GRID_LINE, (j*gap, 0), (j, width))
 
 
 def draw(window, grid, rows, width):
